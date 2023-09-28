@@ -15,6 +15,7 @@ class Producto(models.Model):
     cantidad = models.PositiveIntegerField()
     precio = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0)])
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=True)
+    imagen = models.ImageField(null=True, blank=True)
 
     def __str__( self ):
         return self.nombre
