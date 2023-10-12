@@ -1,56 +1,93 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-<center>
-    <h1>{{titulo}}</h1>
-</center>
-<main>    
+
+{% load static %}
+<!-- <center>
+    <h1 style="padding: 3rem;">{{titulo}}</h1>
+</center> -->
+
+<a href="{% url 'producto' %}?vista=tabla" class="btn btn-primary">Ver en tabla</a>
+
+<form method="GET" action="{% url 'buscar_productos_vista' %}">
+    <input type="text" name="q" placeholder="Buscar productos">
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+<main class="container">
+    {% if productos %}
         {% for producto in productos %}
             <div class="card shadow">
                 <center>
-                    <p><span>Producto:</span> {{ producto.nombre }}</p>
+                    {% if producto.imagen %}
+                        <img src="{{ producto.imagen.url }}" style="width: 90px;">
+                    {% else %}
+                        <img src="{% static 'images/SinImagen.png' %}" alt="LogoImagen" width="90px">
+                    {% endif %}
                     
-                    <a href="{% url 'detalle_producto' producto.id %}">Ver más</a><br>
+                    <p><span>Producto:</span> {{ producto.nombre }}</p>
+                    <p><span>Precio: </span> <span class="pre">$</span> {{ producto.precio }}</p>
+                    
+                    <a href="{% url 'detalle_producto' producto.id %}" class="btn">Ver más</a><br>
+
+                    <a href="{% url 'agregar_al_carrito' producto.id %}" class="btn">Agregar al carrito</a>
                 </center>
-            </div>4e3
+            </div>
             <br>
         {% endfor %}
+    {% else %}
+        <p>No se encontraron productos que coincidan con la búsqueda.</p>
+    {% endif %}
 </main>
-    
 
 <style>
-    
+    .btn{
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #007bff; 
+        color: #fff;
+        border-radius: 5px;
+    }
+    .btn-primary:hover{
+        background-color: #0056b3;
+    }
+    .ver{
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #007bff; 
+        color: #fff;
+        border-radius: 5px;
+    }
+    .ver:hover{
+        background-color: #0056b3;
+    }
 
+    .pre{
+        color: red;
+    }
     span{
         color: blueviolet;
     }
-
-
-    .card {
-        width: 25vh;
-        height: 25vh;
-        padding: 1rem;
-        background: white;
-        border-radius: 10px;
-        transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-    }
-
-    .shadow {
-    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
-                0 0  0 2px rgb(190, 190, 190),
-                0.3em 0.3em 1em rgba(0,0,0,0.3);
-    }
-
-    main{
+    .container{
         width: 100%;
-        height: 100%;
         display: flex;
-        justify-content: space-evenly;
         flex-wrap: wrap;
     }
-
     
+    .card{
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin: 10px;
+        text-align: center;
+        width: 250px; 
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
 </style>
 
 {% endblock %}
