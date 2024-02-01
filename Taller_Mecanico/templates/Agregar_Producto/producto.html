@@ -27,6 +27,7 @@
                     
                     <p><span>Producto:</span> {{ producto.nombre }}</p>
                     <p><span>Precio: </span> <span class="pre">$</span> {{ producto.precio }}</p>
+                    <p>cantidad: {{ producto.cantidad }}</p>
                     
                     <a href="{% url 'detalle_producto' producto.id %}" class="btn">Ver más</a><br>
 

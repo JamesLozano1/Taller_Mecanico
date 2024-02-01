@@ -6,12 +6,12 @@ from .models import Producto, Categoria, Servicios
 class CategoriaForm(forms.ModelForm):
     class Meta:
         model = Categoria
-        fields = ['nombre']
+        fields = '__all__'
 
 class Agregar_producto(forms.ModelForm):
     class Meta:
         model = Producto
-        fields = ['nombre', 'descripcion', 'cantidad', 'precio', 'categoria', 'imagen']
+        fields = '__all__'
 
 class Agregar_Servicios(forms.Form):
     class Meta:

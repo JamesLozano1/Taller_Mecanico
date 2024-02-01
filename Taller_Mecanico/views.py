@@ -169,7 +169,7 @@ def editar_producto(request, producto_id):
     else:
         form = Agregar_producto(instance=producto)
 
-    return render(request, 'Agregar_Producto/editar_producto.html', {
+    return render(request, 'productos/editar_producto.html', {
         'form': form
     })
 
