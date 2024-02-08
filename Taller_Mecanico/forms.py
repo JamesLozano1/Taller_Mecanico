@@ -17,3 +17,4 @@ class Agregar_Servicios(forms.Form):
     class Meta:
         model = Servicios
         fields = '__all__'
+        
