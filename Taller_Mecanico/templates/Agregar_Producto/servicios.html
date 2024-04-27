@@ -1,0 +1,45 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <section>
+        {%for servicio in servicio%}
+            <div>
+                <h1>Servicio: {{ servicio.nombre }}</h1>
+                <h2>Costo: ${{ servicio.precio }}</h2>
+                <p>Descripción: {{ servicio.descripcion }}</p>
+                <button>Pedir</button>
+            </div>
+        {% endfor %}
+    </section>
+    <style>
+        section {
+            padding: 20px;
+            background-color: #f0f0f0;
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        div {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: #666;
+        }
+
+        p {
+            font-size: 16px;
+            color: #888;
+        }
+
+    </style>
+{% endblock %}
